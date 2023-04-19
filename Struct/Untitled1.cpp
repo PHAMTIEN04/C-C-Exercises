@@ -2,29 +2,25 @@
 
 using namespace std;
 int main(){
-	
-	int chiso[6] = {0};
-	while(true){
-		int check = 0;
-		
-		for(int i = 0 ; i<6;i++){
-		
-		if(i > 3){
-			check = check+2;
-			cout <<i-check<<" ";
-		}
-		else{
-		cout << i <<" ";
-		}
-		chiso[i] = i;
+	int choose_o;
+	int choose_t;
+	cout << "Enter the 1st number: ";
+	cin >> choose_o;
+	cout << "Enter the 2nd number: ";
+	cin >> choose_t;
+	switch(choose_o,choose_t){
+		case choose_o > choose_t:
+			cout << "The greater number is: "<<choose_o;
+			break;
+		case choose_o < choose_t:
+			cout << "The greater number is: "<< choose_t;
+			break;
+		case choose_o == choose_t:
+			cout << "The greater number is: " << choose_o;
+		default:
+			cout << "Error";
 	}
 
-	}
-
-	cout << endl;
-	for (int i = 0; i < 6;i++){
-		cout << chiso[i] << " ";
-	}
 
 
 	return 0;
