@@ -1,0 +1,2 @@
+T? h?p l?pinput file:stdinoutput file:stdouttime limit:1000 msmemory limit:1256000kBTaskT? h?p l?p ch?pkt?nph?n t? ký ki?u và tính b?ng công th?c(nk)=n!k!(n-k)!. Hãy vi?t chuong trìnhtính t? h?p ch?pkt?nph?n t?, vì k?t qu? l?n nên c?n chia cho109+ 7.Input- Dòng d?u tiên ch?a s? nguyênTlà s? testcase th?aT=105.-Tdòng ti?p theo m?i dòng ch?a hai s? nguyênn, kcách nhau d?u cách th?a0=k=n=106.Output- In k?t qu? c?n tính cho m?i testcase, m?i testcase in trên m?t dòng.Samplesinput35 38 19 5output108126
+
