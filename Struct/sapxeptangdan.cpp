@@ -1,88 +1,167 @@
 #include <iostream>
 
+ 
+
 struct Node {
+
     int data;
+
     Node* next;
+
 };
 
-typedef struct Node* node;
+ 
 
-node makenode(int x) {
-    node tmp = new Node();
-    tmp->data = x;
-    tmp->next = NULL;
-    return tmp;
+typedef Node* NodePtr;
+
+ 
+
+NodePtr createNode(int x) {
+
+    NodePtr newNode = new Node();
+
+    newNode->data = x;
+
+    newNode->next = nullptr;
+
+    return newNode;
+
 }
 
-void insertLast(node& a, int x) {
-    node tmp = makenode(x);
-    if (a == NULL) {
-        a = tmp;
+ 
+
+void insertLast(NodePtr& head, int x) {
+
+    NodePtr newNode = createNode(x);
+
+    if (head == nullptr) {
+
+        head = newNode;
+
     } else {
-        node p = a;
-        while (p->next != NULL) {
-            p = p->next;
+
+        NodePtr currNode = head;
+
+        while (currNode->next != nullptr) {
+
+            currNode = currNode->next;
+
         }
-        p->next = tmp;
+
+        currNode->next = newNode;
+
     }
+
 }
 
-void in(node a) {
-    if (a == NULL) {
+ 
+
+void printList(NodePtr head) {
+
+    if (head == nullptr) {
+
         std::cout << "Danh sach rong" << std::endl;
+
         return;
+
     }
-    
-    while (a != NULL) {
-        std::cout << a->data << " ";
-        a = a->next;
+
+ 
+
+    while (head != nullptr) {
+
+        std::cout << head->data << " ";
+
+        head = head->next;
+
     }
+
     std::cout << std::endl;
+
 }
 
-void sortList(node& head) {
-    if (head == NULL || head->next == NULL) {
+ 
+
+void sortList(NodePtr head) {
+
+    if (head == nullptr || head->next == nullptr) {
+
         return;
+
     }
 
-    node current = head;
-    node index = NULL;
+ 
+
+    NodePtr currNode = head;
+
+    NodePtr nextNode = nullptr;
+
     int temp;
 
-    while (current != NULL) {
-        index = current->next;
+ 
 
-        while (index != NULL) {
-            if (current->data > index->data) {
-                temp = current->data;
-                current->data = index->data;
-                index->data = temp;
+    while (currNode != nullptr) {
+
+        nextNode = currNode->next;
+
+ 
+
+        while (nextNode != nullptr) {
+
+            if (currNode->data > nextNode->data) {
+
+                temp = currNode->data;
+
+                currNode->data = nextNode->data;
+
+                nextNode->data = temp;
+
             }
-            index = index->next;
+
+            nextNode = nextNode->next;
+
         }
-        current = current->next;
+
+        currNode = currNode->next;
+
     }
+
 }
+
+ 
 
 int main() {
-    node head = NULL;
+
+    NodePtr head = nullptr;
+
     int data;
-    int t = 4;
-    int count = 0;
 
-    while (t--) {
-        std::cin >> data;
+ 
+
+    while (std::cin >> data) {
+
         insertLast(head, data);
-        count++;
+
     }
 
-    if (count == 0) {
+ 
+
+    if (head == nullptr) {
+
         std::cout << "Danh sach rong" << std::endl;
+
     } else {
+
         sortList(head);
-        in(head);
+
+        printList(head);
+
     }
+
+ 
 
     return 0;
+
 }
 
+ 
