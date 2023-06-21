@@ -1,0 +1,10 @@
+[OOP C++] Giải đề thi giữa kỳ (Lớp và đối tượng) - Phần 1
+Chú ý: ID = (masv của sinh viên 1 + masv của sinh viên 2) % 10 + 1 (nếu nhóm chỉ có 1 thành viên thì mã sinh viên 2 sẽ bị bỏ qua). 
+
+Câu 1: (5 điểm) Cho trước một đối tượng sinh viên gồm các thông tin (mã sinh viên, tên sinh viên, điểm môn 1, điểm môn 2, điểm môn 3, quê quán, giới tính). Hãy  tạo ra một đối tượng Lớp gồm một mảng danh sách các sinh viên. Thông tin của Lớp gồm có số lượng sinh viên, một mảng con trỏ chứa danh sách các sinh viên.
+Thực hiện một số yêu cầu sau:
+a. Xây dựng 2 class có tên là SinhVien (đối tượng sinh viên) và LopHoc (đối tượng lớp học)
+b. Định nghĩa hàm dựng và hàm huỷ cho cả hai đối tượng SinhVien và LopHoc.
+c. Cài đặt hàm nhập và xuất cho một lớp học
+d. Tìm sinh viên có giới tính là nữ và ở thứ hạng là ID theo tổng điểm trung bình (điểm môn 1 + điểm môn 2 + điểm môn 3)/3. Nếu không có thì in ra là “Khong tim thay”
+e. Hiển thị nơi (quê quán) mà có số lượng sinh viên học nhiều thứ ID. Nếu không có thì in ra kết quả là “Khong tim thay”
