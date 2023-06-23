@@ -1,0 +1,13 @@
+[OOP C++] Giải đề thi giữa kỳ (Lớp và đối tượng) - Phần 2
+Chú ý: ID = (masv của sinh viên 1 + masv của sinh viên 2) % 10 + 1 (nếu nhóm chỉ có 1 thành viên thì mã sinh viên 2 sẽ bị bỏ qua). 
+
+Câu 2: (5 điểm) Cho trước một đối tượng mảng hai chiều gồm có 3 thuộc tính (số lượng hàng, số lượng cột và con trỏ chứa giá trị của mảng hai chiều).
+Thực hiện một số yêu cầu sau:
+a. Xây dựng class có tên là Mang2Chieu (đối tượng mảng hai chiều)
+b. Xây dựng hàm dựng, hàm hủy
+c. Định nghĩa hàm nhập, hàm xuất, hàm thiết lập sao chép
+d. Hiển thị số chính phương lớn thứ ID trong mảng. Nếu ko tìm được thì in ra “Khong tim thay”.
+e. Nhập vào hai đối tượng mảng hai chiều. Sau đó thực hiện tính toán phép nhân của 2 đối tượng đó, gọi kết quả phép nhân là mảng hai chiều c. Tìm giá trị có tần số xuất hiện nhiều thứ ID trong mảng c đó. Nếu không tìm được thì in ra kết quả là “Khong tim thay”
+Giải thích: Nếu ID của bạn là 2. Thì câu d và e được viết lại như sau:
+d. Hiển thị số chính phương lớn thứ 2 trong mảng. Nếu không có thì in ra là “Khong tim thay” 
+e. Tính tích của 2 mảng hai chiều, gọi kết quả đó là mảng hai chiều c, sau đó tìm giá trị có tần số xuất hiện nhiều thứ 2  trong mảng c. Nếu không tìm được thì in ra kết quả là “Khong tim thay”.
