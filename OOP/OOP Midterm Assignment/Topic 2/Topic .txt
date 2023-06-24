@@ -1,5 +1,4 @@
-[OOP C++] Giải đề thi giữa kỳ (Lớp và đối tượng) - Phần 2
-Chú ý: ID = (masv của sinh viên 1 + masv của sinh viên 2) % 10 + 1 (nếu nhóm chỉ có 1 thành viên thì mã sinh viên 2 sẽ bị bỏ qua). 
+[OOP C++] Gi	
 
 Câu 2: (5 điểm) Cho trước một đối tượng mảng hai chiều gồm có 3 thuộc tính (số lượng hàng, số lượng cột và con trỏ chứa giá trị của mảng hai chiều).
 Thực hiện một số yêu cầu sau:
