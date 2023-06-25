@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 class People {
@@ -22,6 +23,7 @@ private:
         string namep;
         int clonum;
         string location;
+ 		double Salary;
     };
 
     Playerst* a; // Array to store player objects
@@ -57,6 +59,9 @@ void Player::input(int na) {
         cin.ignore();
         cout << "Location: ";
         getline(cin, a[j].location);
+        cout << "Salary: ";
+        cin >> a[j].Salary;
+        cin.ignore();
 
         cout << endl;
     }
@@ -71,6 +76,14 @@ void Player::print() {
         cout << "Age: " << a[j].agep << endl;
         cout << "Clother Number: " << a[j].clonum << endl;
         cout << "Location: " << a[j].location << endl;
+        if(a[j].agep > 2005){
+        	cout << fixed << setprecision(0);
+        	cout << "Salary: "<< a[j].Salary+(a[j].Salary*0.03)<<endl;
+		}
+		else{
+			cout << "Salary: "<< a[j].Salary<<endl;
+		}
+        
         cout << endl;
     }
 }
@@ -83,7 +96,7 @@ private:
         string names;
         string msv;
         string mn;
-        int hp;
+        double hp;
     };
 
     Studentst* a; // Array to store student objects
@@ -135,7 +148,15 @@ void Student::print() {
         cout << "Name: " << a[j].names << endl;
         cout << "Age: " << a[j].ages << endl;
         cout << "Majors: " << a[j].mn << endl;
-        cout << "Tuition: " << a[j].hp << endl;
+        if(a[j].ages > 2005){
+        	double sum = a[j].hp - (a[j].hp*0.05);
+        	cout << fixed << setprecision(0);
+        	cout << "Tuition: " << sum << endl;
+		}
+		else{
+			cout << "Tuition: "<<a[j].hp << endl;
+		}
+        	
         cout << endl;
     }
 }
