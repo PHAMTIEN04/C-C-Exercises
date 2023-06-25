@@ -16,33 +16,38 @@ public:
 
 class Player : public People {
 private:
-    struct PlayerInfo {
+    // Define a struct to store player information
+    struct Playerst {
         int agep;
         string namep;
         int clonum;
         string location;
     };
-    PlayerInfo* a;
-    int i;
+
+    Playerst* a; // Array to store player objects
+    int i; // Counter variable
 
 public:
     Player() {
         i = 0;
     }
-    void input(int n);
-    void print();
+
+    // Allocate memory for player objects
+    void capphatpl(int n) {
+        size(n);
+        a = new Playerst[n];
+    }
+
+    void input(int na); // Function to input player information
+    void print(); // Function to print player information
 };
 
-void Player::input(int n) {
-    size(n);
-    a = new PlayerInfo[n];
-    
+void Player::input(int na) {
     cout << "**Input Information Player**\n";
 
-    for (int j = i; j < n; j++) {
+    for (int j = i; j < na; j++) {
         cout << "Player [" << j + 1 << "]:\n";
         cout << "Name: ";
-        cin.ignore();
         getline(cin, a[j].namep);
         cout << "Age: ";
         cin >> a[j].agep;
@@ -52,7 +57,7 @@ void Player::input(int n) {
         cin.ignore();
         cout << "Location: ";
         getline(cin, a[j].location);
-        
+
         cout << endl;
     }
     i++;
@@ -60,7 +65,7 @@ void Player::input(int n) {
 
 void Player::print() {
     cout << "**Output Information Player**\n";
-    for (int j = 0; j < n; j++) {
+    for (int j = 0; j < i; j++) {
         cout << "Player [" << j + 1 << "]:\n";
         cout << "Name: " << a[j].namep << endl;
         cout << "Age: " << a[j].agep << endl;
@@ -72,33 +77,39 @@ void Player::print() {
 
 class Student : public People {
 private:
-    struct StudentInfo {
+    // Define a struct to store student information
+    struct Studentst {
         int ages;
         string names;
         string msv;
         string mn;
         int hp;
     };
-    StudentInfo* a;
-    int cnt;
+
+    Studentst* a; // Array to store student objects
+    int cnt; // Counter variable
 
 public:
     Student() {
         cnt = 0;
     }
-    void input(int n);
-    void print();
+
+    // Allocate memory for student objects
+    void capphatst(int n) {
+        size(n);
+        a = new Studentst[n];
+    }
+
+    void input(int nb); // Function to input student information
+    void print(); // Function to print student information
 };
 
-void Student::input(int n) {
-    size(n);
-    a = new StudentInfo[n];
+void Student::input(int nb) {
     cout << "**Input Information Student**\n";
-   
-    for (int j =cnt; j < n; j++) {
+
+    for (int j = cnt; j < nb; j++) {
         cout << "Student [" << j + 1 << "]:\n";
         cout << "Student code: ";
-        cin.ignore();
         getline(cin, a[j].msv);
         cout << "Name: ";
         getline(cin, a[j].names);
@@ -110,7 +121,7 @@ void Student::input(int n) {
         cout << "Tuition: ";
         cin >> a[j].hp;
         cin.ignore();
-       
+
         cout << endl;
     }
     cnt++;
@@ -118,7 +129,7 @@ void Student::input(int n) {
 
 void Student::print() {
     cout << "**Output Information Student**\n";
-    for (int j = 0; j < n; j++) {
+    for (int j = 0; j < cnt; j++) {
         cout << "Student [" << j + 1 << "]:\n";
         cout << "Student code: " << a[j].msv << endl;
         cout << "Name: " << a[j].names << endl;
@@ -134,34 +145,34 @@ int main() {
     cout << "Input Size People: ";
     cin >> n;
     cin.ignore();
-    
+
     int choose;
     Player pl1;
+    pl1.capphatpl(n);
     Student s1;
+    s1.capphatst(n);
     int a = 1;
     int b = 1;
-    
+
     while (n != 0) {
-        cout << "Choose (1) to import players or (other 1) to import students: ";
+        cout << "Choose (1) to import players or (other than 1) to import students: ";
         cin >> choose;
         cin.ignore();
-        
+
         if (choose == 1) {
             pl1.input(a);
             a++;
             n--;
-        }
-        else  {
+        } else {
             s1.input(b);
             b++;
             n--;
         }
- 
     }
-    
+
     s1.print();
     pl1.print();
-    
+
     return 0;
 }
 
