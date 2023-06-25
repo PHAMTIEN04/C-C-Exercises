@@ -69,6 +69,7 @@ void Player::input(int na) {
 }
 
 void Player::print() {
+	double sum =0;
     cout << "**Output Information Player**\n";
     for (int j = 0; j < i; j++) {
         cout << "Player [" << j + 1 << "]:\n";
@@ -77,15 +78,18 @@ void Player::print() {
         cout << "Clother Number: " << a[j].clonum << endl;
         cout << "Location: " << a[j].location << endl;
         if(a[j].agep > 2005){
+        	sum +=a[j].Salary+(a[j].Salary*0.03);
         	cout << fixed << setprecision(0);
         	cout << "Salary: "<< a[j].Salary+(a[j].Salary*0.03)<<endl;
 		}
 		else{
+			sum+=a[j].Salary;
 			cout << "Salary: "<< a[j].Salary<<endl;
 		}
         
         cout << endl;
     }
+    cout << "Sum Salary: "<<sum<<endl;
 }
 
 class Student : public People {
@@ -141,6 +145,7 @@ void Student::input(int nb) {
 }
 
 void Student::print() {
+	double sum=0;
     cout << "**Output Information Student**\n";
     for (int j = 0; j < cnt; j++) {
         cout << "Student [" << j + 1 << "]:\n";
@@ -149,16 +154,20 @@ void Student::print() {
         cout << "Age: " << a[j].ages << endl;
         cout << "Majors: " << a[j].mn << endl;
         if(a[j].ages > 2005){
-        	double sum = a[j].hp - (a[j].hp*0.05);
+        	sum += a[j].hp - (a[j].hp*0.05);
         	cout << fixed << setprecision(0);
-        	cout << "Tuition: " << sum << endl;
+        	cout << "Tuition: " << a[j].hp - (a[j].hp*0.05)<< endl;
 		}
 		else{
+			sum+= a[j].hp;
 			cout << "Tuition: "<<a[j].hp << endl;
 		}
         	
         cout << endl;
     }
+    
+    cout << "Sum Tuition: "<< sum<<endl;
+    
 }
 
 int main() {
