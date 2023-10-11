@@ -1,41 +1,23 @@
 #include <iostream>
-#include <fstream>
-#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
 
 int main() {
-    const std::string filename = "a.txt";
-    const std::string replacement = "rooster";
-    const std::string target = "chicken";
+    int n;
+    cin >> n;
 
-    std::ifstream inFile(filename);
-    if (!inFile) {
-        std::cerr << "Unable to open input file: " << filename << std::endl;
-        return 1;
+    vector<int> A(n);
+
+    for (int i = 0; i < n; i++) {
+        cin >> A[i];
     }
 
-    std::string line;
-    std::string fileContent;
+    sort(A.begin(), A.end());
 
-    while (std::getline(inFile, line)) {
-        if (line == target) {
-            fileContent += replacement + '\n';
-        } else {
-            fileContent += line + '\n';
-        }
+    for (int i = 0; i < n; i++) {
+        cout << A[i] << " ";
     }
-
-    inFile.close();
-
-    std::ofstream outFile(filename);
-    if (!outFile) {
-        std::cerr << "Unable to open output file: " << filename << std::endl;
-        return 1;
-    }
-
-    outFile << fileContent;
-    outFile.close();
-
-    std::cout << "Replacement completed." << std::endl;
 
     return 0;
 }
