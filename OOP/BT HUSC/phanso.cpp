@@ -1,44 +1,111 @@
 #include <iostream>
+#include <math.h>
+using namespace std;
 class phanso{
 	private:
 		int tu;
 		int mau;
 	public:
+		phanso(){
+			tu = 0;
+			mau = 0;
+		}
 		phanso(int t , int m):tu(t),mau(m){};
-		void khoitao();
 		void hienthi();
-		float cong(phanso &ps1);
+		phanso cong(phanso &ps1);
+		phanso tru(phanso &ps1);
+		phanso nhan(phanso &ps1);
+		phanso chia(phanso &ps1);
+		void toigian();
 };
-//void phanso::khoitao(){
-//	std::cout << "**Input**\n";
-//	std::cout << "Tu: ";
-//	std::cin >> tu;
-//	std::cout << "Mau: ";
-//	std::cin >> mau;
-//}
+
 void phanso::hienthi(){
-	std::cout << "**Output**\n";
-	std::cout << "Tu: "<<tu<<std::endl;
-	std::cout << "Mau: "<<mau<<std::endl;
+	cout << "**Output**\n";
+	cout << "Phan So= " << tu << "/" << mau << endl;
 }
-float phanso::cong(phanso &ps1){
-	return (tu*ps1.mau + ps1.tu * mau) / mau * ps1.mau;
+phanso phanso::cong(phanso &ps1){
+	cout << "Cong\n";
+	phanso ps2;
+	if(mau == ps1.mau){
+		ps2.tu = tu + ps1.tu;
+		ps2.mau = mau;
+	}
+	else{
+		ps2.tu = (tu * ps1.mau) + (ps1.tu * mau);
+		ps2.mau = (mau * ps1.mau);
+	}
+	return ps2;
+}
+phanso phanso::tru(phanso &ps1){
+	cout << "Tru\n";
+	phanso ps2;
+	if(mau == ps1.mau){
+		ps2.tu = tu - ps1.tu;
+		ps2.mau = mau;
+	}
+	else{
+		ps2.tu = (tu * ps1.mau) - (ps1.tu * mau);
+		ps2.mau = (mau * ps1.mau);
+	}
+	return ps2;
+}
+phanso phanso::nhan(phanso &ps1){
+	cout << "Nhan\n";
+	phanso ps2;
+	ps2.tu = tu * ps1.tu;
+	ps2.mau = mau * ps1.mau;
+	return ps2;
+}
+phanso phanso::chia(phanso &ps1){
+	cout << "Chia\n";
+	phanso ps2;
+	ps2.tu = tu * ps1.mau;
+	ps2.mau = mau * ps1.tu;
+	return ps2;
+}
+void phanso::toigian(){
+	cout << "Phan So Toi Gian\n";
+	int max = 0;
+	int i = 1;
+	int n = 0;
+	if(tu > mau){
+		n = tu;
+	}
+	else{
+		n = mau;
+	}
+	while(i<=n){
+		if(tu%i == 0 && mau%i==0){
+			max = i;
+		}
+		i++;
+	}
+	tu = tu / max;
+	mau = mau/max;
 }
 int main(){
-//	int n; std::cin >> n;
-	phanso ps(3,4);
+
+	phanso ps(2,4);
 	phanso ps1(3,4);
-//	ps.khoitao();
-//	ps.hienthi();
-	std::cout<<"Cong: "<< ps.cong(ps1);
+	phanso ps2 = ps.cong(ps1);
+	ps2.hienthi();
+	ps2.toigian();
+	ps2.hienthi();
+	phanso ps3 = ps.tru(ps1);
+	ps3.hienthi();
+	ps3.toigian();
+	ps3.hienthi();
+	phanso ps4 = ps.nhan(ps1);
+	ps4.hienthi();
+	ps4.toigian();
+	ps4.hienthi();
+	phanso ps5 = ps.chia(ps1);
+	ps5.hienthi();
+	ps5.toigian();
+	ps5.hienthi();
 	
 	
-//	for(int i = 0 ; i < n; i++){
-//		ps[i].khoitao();
-//	}
-//	for(int i = 0 ; i < n;i++){
-//		ps[i].hienthi();
-//	}
+	
 
 
 
