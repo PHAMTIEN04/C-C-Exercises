@@ -1,24 +1,44 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
+
 using namespace std;
 
-int main() {
-    int n;
-    cin >> n;
+int main(){
+	int m,n; cin >> m; cin >> n;
+	int ga = 2;
+	int cho = 4;
+	int s_ga= 0;
+	int s_cho= 0;
+	int check_c = 0;
+	int check_g = 0;
+	int sum = 0;
+	bool check = false;
+	for(int i = 1 ; i <= m ;i++){
+		check_c = check_c + cho;
+		check_g = 0;
+		for(int j = i + 1;j <= m;j++){
+			check_g = check_g + 2;
+			sum = check_c + check_g;
+			if(sum == n){
+				s_cho = i;
+				s_ga = m-i;
+				check = true;
+				break;
+			}
+		}
+		if(sum == n){
+			break;
+		}
+	}
+	if(check == true){
+		cout << "Ga = "<<s_ga << endl;
+		cout << "Cho = "<<s_cho << endl;
+	}
+	else if(check == false){
+		cout << -1;
+	}
 
-    vector<int> A(n);
 
-    for (int i = 0; i < n; i++) {
-        cin >> A[i];
-    }
 
-    sort(A.begin(), A.end());
-
-    for (int i = 0; i < n; i++) {
-        cout << A[i] << " ";
-    }
-
-    return 0;
+	return 0;
 }
 
