@@ -12,7 +12,8 @@ int main(){
 	int check_g = 0;
 	int sum = 0;
 	bool check = false;
-	for(int i = 1 ; i <= m ;i++){
+	if(m > 0){
+		for(int i = 1 ; i <= m ;i++){
 		check_c = check_c + cho;
 		check_g = 0;
 		for(int j = i + 1;j <= m;j++){
@@ -29,13 +30,15 @@ int main(){
 			break;
 		}
 	}
-	if(check == true){
+	if(check == true && s_ga > 0 && s_cho > 0){
 		cout << "Ga = "<<s_ga << endl;
 		cout << "Cho = "<<s_cho << endl;
 	}
 	else if(check == false){
 		cout << -1;
 	}
+	}
+
 
 
 
