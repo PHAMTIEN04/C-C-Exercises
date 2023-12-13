@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-
+#include <conio.h>
 using namespace std;
 class ThuVien{
 	protected:
@@ -8,7 +8,10 @@ class ThuVien{
 		int sbph;
 	public:
 		ThuVien(string vmatl="",string vtennxb="",int vsbph=0):matl(vmatl),tennxb(vtennxb),sbph(vsbph){};
-		
+		string getmtl(){
+			return this->matl;
+		}
+		virtual string getloai() = 0;
 		virtual void hienthi(){
 			cout << "Ma tai lieu: " << this->matl<<endl;
 			cout << "Ten nha xuat ban: "<< this->tennxb << endl;
@@ -22,7 +25,9 @@ class Sach:public ThuVien{
 		int st;
 	public:
 		Sach(string vttg = "",int vst = 0,string vmatl="",string vtennxb="",int vsbph=0):ttg(vttg),st(vst),ThuVien(vmatl,vtennxb,vsbph){};
-		
+		string getloai(){
+			return "Sach";
+		}
 		void hienthi(){
 			cout << "**Sach**"<<endl;
 			ThuVien::hienthi();
@@ -37,7 +42,9 @@ class TapChi:public ThuVien{
 		int sph,tph;
 	public:
 		TapChi(int vsph = 0,int vtph = 0,string vmatl="",string vtennxb="",int vsbph=0):sph(vsph),tph(vtph),ThuVien(vmatl,vtennxb,vsbph){};
-		
+		string getloai(){
+			return "TapChi";
+		}
 		void hienthi(){
 			cout << "**Tap Chi**"<<endl;
 			ThuVien::hienthi();
@@ -51,7 +58,9 @@ class Bao:public ThuVien{
 		int nph;
 	public:
 		Bao(int vnph = 0,string vmatl="",string vtennxb="",int vsbph=0):nph(vnph),ThuVien(vmatl,vtennxb,vsbph){};
-		
+		string getloai(){
+			return "Bao";
+		}
 		void hienthi(){
 			cout << "**Bao**"<<endl;
 			ThuVien::hienthi();
@@ -73,7 +82,9 @@ class QuanLySach{
 			cout << "2.Tap Chi\n";
 			cout << "3.Bao\n";
 
-			int choose; cin >> choose;
+			int choose; 
+			cout << "Chon: ";
+			cin >> choose;
 			switch(choose){
 				case 1:{
 					string mtl,tnxb,ttg;
@@ -117,15 +128,143 @@ class QuanLySach{
 		
 		}
 		void hienthi(){
+			cout << "**Hien thi thong tin tai lieu**\n";
 			for(int i = 0;i < n ;i++){
 				tv[i]->hienthi();
 			}
+			if(n == 0){
+				cout << "Tai Lieu Trong!!!\n";
+			}
+		}
+		void xoatailieu(){
+			string mtl;
+			cout <<"**Xoa tai lieu theo ma tai lieu**\n";
+			cout << "Ma tai lieu muon xoa: "; 
+			cin.ignore();
+			getline(cin,mtl);
+			int check = n;
+			for(int i = 0;i < n-1;i++ ){
+				for(int j = i + 1;j < n;j++){			
+						if(tv[i]->getmtl() == mtl ){
+							ThuVien *tmp;
+							tmp = tv[i];
+							tv[i] = tv[j];
+							tv[j] = tmp;
+						}
+
+				}
+			}
+			int cnt = 0;
+			for(int i = 0; i < n;i++){
+				if(tv[i]->getmtl() == mtl){
+					cnt++;
+				}
+			}
+			this->n = n - cnt;
+ 			if(check != n ){
+ 				cout << "Da xoa thanh cong\n";
+			 }
+			else if (check == n){
+				cout << "Khong tim thay tai lieu muon xoa\n";
+			}
+			
+		}
+		void timtailieu(){
+			int choose;
+			cout << "**Tim Tai Lieu**\n";
+			cout << "1.Sach"<<endl;
+			cout << "2.Tap chi"<<endl;
+			cout << "3.Bao"<<endl;
+			cout << "Chon: "; cin >> choose;
+			switch(choose){
+				case 1:{
+					bool check_s = false;
+					for(int i = 0 ; i < n;i++){
+						if(tv[i]->getloai() == "Sach"){
+							tv[i]->hienthi();
+							check_s = true;
+						}
+					}			
+					if(check_s == false)	{
+						cout << "Khong tim thay tai lieu!!!\n";
+					}	
+					break;
+				}
+				case 2:{
+					bool check_tc = false;
+					for(int i = 0 ; i < n;i++){
+						if(tv[i]->getloai() == "TapChi"){
+							tv[i]->hienthi();
+							check_tc= true;
+						}
+					}		
+					if(check_tc == false)	{
+						cout << "Khong tim thay tai lieu!!!\n";
+					}				
+					break;
+				}
+				case 3:{
+					bool check_b = false;
+					for(int i = 0 ; i < n;i++){
+						if(tv[i]->getloai() == "Bao"){
+							tv[i]->hienthi();
+							check_b = true;
+						}
+					}		
+					if(check_b == false)	{
+						cout << "Khong tim thay tai lieu!!!\n";
+					}				
+					break;
+				}
+			}
+			
+		}
+		void Menu(){
+			int choose;
+			do{
+				system("cls");
+				cout << "** QUAN LY TAI LIEU **\n";
+				cout << "1.Them tai lieu moi\n";
+				cout << "2.Xoa tai lieu theo ma tai lieu\n";
+				cout << "3.Hien thi thong tin tai lieu\n";
+				cout << "4.Tim tai lieu\n";
+				cout << "0.Thoat\n";
+				cout << "Chon: ";
+				cin>> choose;
+				getch();
+				switch(choose){
+					case 1:{
+						system("cls");
+						themtailieu();
+						getch();
+						break;
+					}
+					case 2:{
+						system("cls");
+						xoatailieu();
+						getch();
+						break;
+					}
+					case 3:{
+						system("cls");
+						hienthi();
+						getch();
+						break;
+					}
+					case 4:{
+						system("cls");
+						timtailieu();
+						getch();
+						break;
+					}
+				}
+				
+			}while(choose == 1 || choose == 2 || choose == 3 || choose == 4);
 		}
 };
 int main(){
 	QuanLySach s;
-	s.themtailieu();
-	s.hienthi();
+	s.Menu();
 
 
 	return 0;
