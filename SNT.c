@@ -15,10 +15,10 @@ bool CheckSoNguyenTo(int n){
 		}
 		
 	}
-		 if(cnt == 0){
+		if(cnt == 0){
 		 	return true;
-    }else{
-    	return false;
+    }	else{
+    		return false;
     }
 	}
 
