@@ -1,100 +1,121 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-struct node{
-	int data;
-	node *left;
-	node *right;
+struct Nut{
+	int info;
+	Nut *left;
+	Nut *right;
 };
-typedef struct node *Node;
-Node khoitao(int data){
-	Node p = new node;
-	p->data = data;
+
+Nut* khoitao(int x){
+	Nut* p = new Nut;
+	p->info = x;
 	p->left = NULL;
 	p->right = NULL;
 	return p;
 }
-void themnut(Node &root,int data){
+void themnut(Nut *&T,int x){
 	
-	if(root == NULL){
-		Node p = khoitao(data);
-		root = p;
+	if(T == NULL){
+		Nut *p = khoitao(x);
+		T = p;
 	}
 	else{
-		if(root->data > data ){
-			themnut(root->left,data);
+		if(T->info > x ){
+			themnut(T->left,x);
 		}
 		else{
-			themnut(root->right,data);
+			themnut(T->right,x);
 		}
 	}
 }
-void duyetnlr(Node root){
-	if(root != NULL){
-		cout << root->data << " ";
-		duyetnlr(root->left);
-		duyetnlr(root->right);
+void duyetnlr(Nut *T){
+	if(T != NULL){
+		cout << T->info << " ";
+		duyetnlr(T->left);
+		duyetnlr(T->right);
 	}
 }
-void ditimnuthemang(Node &x,Node &y){
+void ditimnuthemang(Nut *&x,Nut *&y){
 	if(y->left != NULL){
 		ditimnuthemang(x,y->left);
 	}
 	else{
-		x->data = y->data;
+		x->info = y->info;
 		x = y;
 		y = y->right;
 	}
 }
-void xoa(Node &root,int data){
-	if(root == NULL){
+void xoa(Nut *&T,int x){
+	if(T == NULL){
 		return;
 	}
 	else{
 		
-		if(root -> data > data){
+		if(T -> info > x){
 		
-			xoa(root->left,data);
+			xoa(T->left,x);
 			
 		}
-		else if(root->data < data){
+		else if(T->info < x){
 		
-			xoa(root->right,data);
+			xoa(T->right,x);
 			
 		}
 		else{
-			Node x = root;
-			if(root->left == NULL){
-				root = root->right;
+			Nut *x = T;
+			if(T->left == NULL){
+				T = T->right;
 			}
-			else if(root->right == NULL){
-				root = root->left;
+			else if(T->right == NULL){
+				T = T->left;
 			}
 			else{
-				Node y = root->right;
+				Nut *y = T->right;
 				ditimnuthemang(x,y);
 			}
 			delete x;
 		}
 	}
 }
-Node timkiem(Node root,int data){
-	if(root != NULL){
-		if(root->data > data){
-			timkiem(root->left,data);
+Nut* timkiem(Nut* T,int x){
+	if(T != NULL){
+		if(T->info > x){
+			timkiem(T->left,x);
 		}
-		else if(root->data < data){
-			timkiem(root->right,data);
+		else if(T->info < x){
+			timkiem(T->right,x);
 		}
 		else{
-			return root;
+			return T;
 		}
 	}
 }
+int chieucao(Nut *T){
+	if(T == NULL){
+		return 0;
+	}
+	else{
+		if(T->left == NULL && T->right == NULL){
+			return 1;
+		}
+		else{
+			return max(chieucao(T->left),chieucao(T->right))+1;
+		}
+	}
+}
+void xoaall(Nut *&T){
+	if(T != NULL){
+		xoaall(T->left);
+		xoaall(T->right);
+		delete T;
+		T = NULL;
+	}
+}
 int main(){
-	Node t = NULL;
+	Nut *t = NULL;
 	int data;
-	for(int i = 0 ; i < 8; i++){
+	for(int i = 0 ; i < 10; i++){
 		cout << "Nhap data: "; cin >> data; cin.ignore();
 		themnut(t,data);
 		cout << endl;
@@ -102,7 +123,10 @@ int main(){
 	duyetnlr(t);
 	xoa(t,15);
 	duyetnlr(t);
-	cout << timkiem(t,3)->data;
+	cout << timkiem(t,3)->info;
+	cout << "Chieu cao : "<< chieucao(t)<<endl; 
+	xoaall(t);
+	duyetnlr(t);
 	return 0;
 }
 
