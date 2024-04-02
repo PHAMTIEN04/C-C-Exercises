@@ -151,28 +151,28 @@ Nut* TimNutCha(Nut* T, Nut* p) {
     if (T->left == p || T->right == p) {
         return T;
     }
-	TimNutCha(T->left, p);
-	TimNutCha(T->right, p);
-
-
-}
-static int muc = 1;
-int TimMuc(Nut* T, Nut* p) {
-    if (T == NULL || p == NULL) {
-        return -1;
+    Nut* nutChaBenTrai = TimNutCha(T->left, p);
+    Nut* nutChaBenPhai = TimNutCha(T->right, p);
+    if (nutChaBenTrai != NULL) {
+        return nutChaBenTrai; 
     }
-	if(T->info == p->info) return 1;
-	muc++;
-	if(p->info < T->info){
-		TimMuc(T->left,p);
-	}
-	else if(p->info > T->info){
-		TimMuc(T->right,p);
-	}
+    return nutChaBenPhai; 
+}
 
-
+int TimMuc(Nut* T, Nut* p) {
+    Nut* nutCha = TimNutCha(T, p);
+    int muc = 0;
+    while (p != nutCha) {
+        if (p->info < nutCha->info) {
+            p = p->right; 
+        } else {
+            p = p->left; 
+        }
+        muc++;
+    }
     return muc;
 }
+
 bool kiemtra(Nut* T) {
     if (T == NULL) {
         return true;
@@ -253,7 +253,7 @@ int main(){
     int s = 0;
     cout << "So luong nut la trong cay: " << timnutnhanh(t, s) << endl;
     
-    Nut *p = t->left->left->left;
+    Nut *p = t->left->right;
     cout << "Muc cua nut " << p->info << " trong cay: " << TimMuc(t, p) << endl;
     
     int x;
