@@ -211,15 +211,52 @@ Nut* saoChepCay(Nut* T) {
     p->right = saoChepCay(T->right);
     return p;
 }
+void DieuChinh(Nut* T) {
+    if (T == NULL || (T->left == NULL && T->right == NULL)) {
+        return;
+    }
+
+    bool check = false;
+    while (!check) {
+        check = true;
+
+        // N?u nút có nút con trái và nút con ph?i
+        if (T->left != NULL && T->right != NULL) {
+            // Ki?m tra và th?c hi?n swap n?u c?n thi?t
+            if (T->info < T->left->info || T->info < T->right->info) {
+                Nut* maxChild = (T->left->info > T->right->info) ? T->left : T->right;
+                std::swap(T->info, maxChild->info);
+                T = maxChild;
+                check = false; // Ti?p t?c vòng l?p d? ki?m tra tính ch?t c?a cây
+            }
+        } else if (T->left != NULL && T->info < T->left->info) {
+            std::swap(T->info, T->left->info);
+            T = T->left;
+            check = false;
+        } else if (T->right != NULL && T->info < T->right->info) {
+            std::swap(T->info, T->right->info);
+            T = T->right;
+            check = false;
+        } else {
+            // Ð? quy cho các nút con
+            DieuChinh(T->left);
+            DieuChinh(T->right);
+        }
+    }
+}
+
 
 int main(){
     Nut *t = NULL;
     int data;
-    for(int i = 0 ; i < 10; i++){
+    for(int i = 0 ; i < 10 ; i++){
         cout << "Nhap data: "; cin >> data; cin.ignore();
         themnut(t,data);
         cout << endl;
     }
+    duyetnlr(t);
+	DieuChinh(t);
+	duyetnlr(t);
     
     if(kiemtra(t)){
         cout << "Cay nhi phan tim kiem" << endl;
