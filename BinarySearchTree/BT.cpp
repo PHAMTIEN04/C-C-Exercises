@@ -45,7 +45,8 @@ void ditimnuthemang(Nut *&x,Nut *&y){
     else{
         x->info = y->info;
         x = y;
-        y = y->right;
+        y = y->left;
+
     }
 }
 
@@ -100,7 +101,7 @@ int chieucao(Nut *T){
         return max(chieucao(T->left),chieucao(T->right))+1;
     }
 }
-
+//hihi
 void xoaall(Nut *&T){
     if(T != NULL){
         xoaall(T->left);
@@ -268,7 +269,7 @@ int main(){
     duyetnlr(t);
     cout << endl;
     
-    xoa(t,15);
+    xoa(t,4);
     cout << "Cay nhi phan sau khi xoa phan tu co gia tri 15: ";
     duyetnlr(t);
     cout << endl;
