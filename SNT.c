@@ -27,8 +27,12 @@ int main(){
 	
 	int n ;
 	cin >> n;
-	CheckSoNguyenTo(n);
-
+	bool c = CheckSoNguyenTo(n);
+	if(check == true){
+		cout << "Yes";
+	}else{
+		cout << "No";
+	}
 	return 0;
 }
 
